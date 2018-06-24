@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci History</title>
+</head>
+<body>
+<h1>Fibonacci History</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Param</th>
+        <th>Result</th>
+    </tr>
+    <tr th:each="entry : ${history}">
+        <td th:text="${entry.id}">ID</td>
+        <td th:text="${entry.date}">1</td>
+        <td th:text="${entry.parameter}">1</td>
+        <td th:text="${entry.result}">1</td>
+    </tr>
+</table>
+
+</body>
+</html>
