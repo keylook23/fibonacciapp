@@ -2,21 +2,20 @@ package com.zacharadamian.fibonacciapp.controllers;
 
 import com.zacharadamian.fibonacciapp.model.HistoryEntry;
 import com.zacharadamian.fibonacciapp.repositories.HistoryEntryRepository;
-import com.zacharadamian.fibonacciapp.services.FibonacciServices;
+import com.zacharadamian.fibonacciapp.services.FibonacciService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class FibonacciController {
 
-    private FibonacciServices fibonacciServices;
+    private FibonacciService fibonacciService;
     private HistoryEntryRepository historyEntryRepository;
 
-    public FibonacciController(FibonacciServices fibonacciServices, HistoryEntryRepository historyEntryRepository) {
-        this.fibonacciServices = fibonacciServices;
+    public FibonacciController(FibonacciService fibonacciService, HistoryEntryRepository historyEntryRepository) {
+        this.fibonacciService = fibonacciService;
         this.historyEntryRepository = historyEntryRepository;
     }
 
@@ -24,11 +23,10 @@ public class FibonacciController {
     public String convert(@RequestParam(name = "number", required = false) Long param) {
         if (param != null) {
             if (param != 0) {
-                HistoryEntry historyEntry = fibonacciServices.calculateSequence(param);
+                HistoryEntry historyEntry = fibonacciService.calculateSequence(param);
                 historyEntryRepository.save(historyEntry);
             }
         }
-// opcional java abc
         return "convert";
     }
 
