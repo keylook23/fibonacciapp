@@ -21,24 +21,20 @@ public class FibonacciController {
     }
 
     @RequestMapping(value = {"/"})
-    public String convert(@RequestParam(name = "number", required=false) Long param) {
-        if (param != null){
+    public String convert(@RequestParam(name = "number", required = false) Long param) {
+        if (param != null) {
             if (param != 0) {
                 HistoryEntry historyEntry = fibonacciServices.calculateSequence(param);
                 historyEntryRepository.save(historyEntry);
             }
         }
-// opcional java
+// opcional java abc
         return "convert";
     }
 
-   @RequestMapping(value = "/history")
-    public String getHistory(Model model){
+    @RequestMapping(value = "/history")
+    public String getHistory(Model model) {
         model.addAttribute("history", historyEntryRepository.findAll());
         return "history";
     }
-
 }
-// przekierowanie do strony początkowej
-// zainicjowanie obiektu na nowo po wczesniejszym usunięciu go
-
